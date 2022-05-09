@@ -1,7 +1,6 @@
 package simpledi
 
 import (
-	"errors"
 	"fmt"
 	"reflect"
 )
@@ -23,10 +22,10 @@ type container struct {
 
 func (c *container) Get(key, instanceName string) reflect.Value {
 	if _, ok := c.m[key]; !ok {
-		panic(errors.New(fmt.Sprintf("instance [%s] has not registered", key)))
+		panic(fmt.Errorf("simpledi: instance [%s] has not registered", key))
 	}
 	if _, ok := c.m[key][instanceName]; !ok {
-		panic(errors.New(fmt.Sprintf("instance [%s] name [%s] has not registered", key, instanceName)))
+		panic(fmt.Errorf("simpledi: instance [%s] name [%s] has not registered", key, instanceName))
 	}
 	return c.m[key][instanceName]
 }

@@ -26,7 +26,7 @@ func GetWithName[T any](c IContainer, instanceName string) T {
 func Inject(c IContainer, instancePtrToInject any) {
 	targetType := reflect.TypeOf(instancePtrToInject)
 	if targetType.Kind() != reflect.Ptr {
-		panic(fmt.Errorf("ioc: inject target <%s> is not ptr", targetType.String()))
+		panic(fmt.Errorf("simpledi: inject target <%s> is not ptr", targetType.String()))
 	}
 	targetElemType := targetType.Elem()
 	targetElemValue := reflect.ValueOf(instancePtrToInject).Elem()
